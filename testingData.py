@@ -4,12 +4,18 @@ import pandas as pd
 import sys
 import inspect
 
-pd.set_option('display.max_rows', None)
-pd.set_option('display.max_columns', None)
+# pd.set_option('display.max_rows', None)
+# pd.set_option('display.max_columns', None)
 stack = []
 
 
-def print_file(file):
+def print_file(file, stack):
+    """
+    Prints the last part of the file using a stack or list of instructions.
+    :param file: File we want to print the attributes of
+    :param stack: The stack of attributes / fields that
+    :return: Nothing.
+    """
     attr = file
     for i in stack:
         attr_test = getattr(attr, i, "0")
@@ -23,12 +29,21 @@ def print_file(file):
                 print(i + " is not an attribute or field!")
                 stack.pop()
                 return
+            except KeyError:
+                print(i + " is not an attribute or field!")
+                stack.pop()
+                return
         else:
             attr = attr_test
     print(attr)
 
 
 def navigate(file):
+    """
+    Function that helps to navigate through the file
+    :param file: The file to navigate through
+    :return: Nothing.
+    """
     print(file)
     print_sep()
     response = input("Where to now?")
@@ -38,7 +53,7 @@ def navigate(file):
             print("Going backwards")
             stack.pop()
             stack.pop()
-        print_file(file)
+        print_file(file, stack)
         print_sep()
         response = input("Where to now?")
         stack.append(response)
@@ -105,20 +120,3 @@ def fuckyou(arr):
 io = NWBHDF5IO("/mnt/d/Users/odilo/Downloads/sub-YutaMouse37_ses-YutaMouse37-150609_behavior+ecephys.nwb", "r")
 nwbfile_in = io.read()
 navigate(nwbfile_in)
-#print(nwbfile_in)
-# test_timeseries_in = nwbfile_in.electrode_groups['4x8_Neuronexus_Z50um_X200um: 32']
-# get_aquisition(nwbfile_in)
-#print_sep()
-#print(nwbfile_in.acquisition["ch_SsolL"].data[:])
-# print(nwbfile_in.acquisition["lick_trace"].time_series["lick_trace"])
-# print(nwbfile_in.acquisition)
-#print_sep()
-# print(get_size(nwbfile_in.acquisition["principal_whisker_b2"]))
-# print(nwbfile_in.acquisition["principal_whisker_C2"].time_series["touch_offset"].data[:])
-# print_sep()
-# print(nwbfile_in.acquisition["CurrentClampSeries"].data[:])
-# print(get_size(nwbfile_in.acquisition["CurrentClampSeries"].data[:]))
-# print(nwbfile_in.acquisition["principal_whisker_b2"].time_series["pole_available"])
-# print(str(nwbfile_in.electrodes[0:]))
-# print_sep()
-# print_list(test_timeseries_in.device)
