@@ -3,10 +3,16 @@ import numpy as np
 import pandas as pd
 import sys
 import inspect
+import os
 
 # pd.set_option('display.max_rows', None)
 # pd.set_option('display.max_columns', None)
 stack = []
+
+
+def save_as_np(arr):
+    file = input("Under what name should I save?")
+    np.save(os.path.dirname(os.path.abspath(__file__)) + file + ".npy", arr, allow_pickle=True)
 
 
 def print_file(file, stack):
@@ -21,7 +27,10 @@ def print_file(file, stack):
         attr_test = getattr(attr, i, "0")
         if attr_test == "0":
             try:
-                if i == ":":
+                if i == "Save":
+                    save_as_np(attr)
+                    stack.pop()
+                elif i == ":":
                     attr = attr[:]
                 else:
                     attr = attr[i]
@@ -117,6 +126,7 @@ def fuckyou(arr):
             print("FUCK YOU")
 
 
-io = NWBHDF5IO("/mnt/d/Users/odilo/Downloads/sub-YutaMouse37_ses-YutaMouse37-150609_behavior+ecephys.nwb", "r")
+io = NWBHDF5IO(os.path.dirname(os.path.abspath(__file__))
+               + "/sub-YutaMouse37_ses-YutaMouse37-150609_behavior+ecephys.nwb", "r")
 nwbfile_in = io.read()
 navigate(nwbfile_in)
