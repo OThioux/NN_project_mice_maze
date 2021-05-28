@@ -37,3 +37,22 @@
 -google collab
 
 https://deeplearning.cs.cmu.edu/S21/document/recitation/Recitation_6_RNN_Basics.pdf 
+
+
+-more difficult to keep track of all different changes, NN needs to memorise on two different timescales, which is super hard
+
+-average the input to make it into the same coarser input
+
+-for now try doing it this way but will spend a lot of time finetuning, which is not the most rewarding
+
+-more rewarding to coarse grade/grain (?) it for now
+
+-training on the future to predict past - don’t do this, very easy to fall into the trap, important that the time dimension is special split chronologically
+
+-for one experiment to get a rough idea how difficult it is to predict and see if it is learning
+
+-one experiment should be enough to see at least a little bit of learning
+
+-once it works you can try to increase input resolution again
+
+ - Start with keras then go to tf
