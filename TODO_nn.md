@@ -20,8 +20,6 @@
 
 -is underestimated a lot
 
--super useful for jobs or internship opportunities
-
 -isolate xy coordinate data
 
 -PCA on time series that take into account temporal relationships
