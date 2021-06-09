@@ -8,9 +8,9 @@ import sklearn.datasets
 from keras import backend as K
 
 EPOCHS = 10
-BATCHSIZE = 250
+BATCHSIZE = 500
 HINDSIGHT = 4
-num_folds = 6
+num_folds = 4
 
 
 def euclidean_distance_loss(y_true, y_pred):
@@ -21,9 +21,7 @@ def euclidean_distance_loss(y_true, y_pred):
 ecephys_sep = np.load("Test_cleaned_sep.npy", allow_pickle=True)
 pos_data_sep = np.load("NN_projectPosDatSensor_cleaned_sep.npy", allow_pickle=True)
 
-
 print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
-
 
 pos_data = []
 ecephys_data_past = []
@@ -36,7 +34,6 @@ for j in range(len(ecephys_sep)):
             pos_data.append(pos_data_sep[j][HINDSIGHT + i])
 ecephys_data_past = np.asarray(ecephys_data_past)
 pos_data = np.asarray(pos_data)
-
 
 # Define the K-fold Cross Validator
 kfold = KFold(n_splits=num_folds, shuffle=True)
@@ -60,10 +57,9 @@ for train, test in kfold.split(ecephys_data_past, pos_data):
     print(f'Training for fold {fold_no} ...')
     model.compile(optimizer="adam", loss=euclidean_distance_loss)
     # K.set_value(model.optimizer.learning_rate, 0.1)
-    hist = model.fit(ecephys_data_past[train], pos_data[train], epochs=EPOCHS, batch_size=BATCHSIZE,
-                     validation_data=(ecephys_data_past[test], pos_data[test]))
+    hist.append(model.fit(ecephys_data_past[train], pos_data[train], epochs=EPOCHS, batch_size=BATCHSIZE,
+                          validation_data=(ecephys_data_past[test], pos_data[test])))
     fold_no += 1
-
 
 print("Done")
 
@@ -80,4 +76,3 @@ plt.show()
 plt.savefig("FFN_model_plot.png")
 
 # model.save("FFN_Model.h5")
-
