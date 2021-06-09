@@ -64,15 +64,14 @@ for train, test in kfold.split(ecephys_data_past, pos_data):
 print("Done")
 
 # from tutorial
-for i in range(len(hist)):
-    plt.plot(hist[i].history['loss'])
-    plt.plot(hist[i].history["val_loss"])
+plt.plot(hist[0].history['loss'])
+plt.plot(hist[0].history["val_loss"])
 
 plt.title('model loss')
 plt.ylabel('loss')
 plt.xlabel('epoch')
-# plt.legend(['train', 'test'], loc='upper left')
+plt.legend(['train', 'test'], loc='upper right')
 plt.show()
-plt.savefig("FFN_model_plot.png")
+plt.savefig("FFN_model_plot_DistributedSampling.png")
 
-# model.save("FFN_Model.h5")
+model.save("FFN_Model_DistributedSampling.h5")

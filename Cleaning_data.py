@@ -2,8 +2,6 @@ import sys
 
 import numpy as np
 
-
-
 np.set_printoptions(threshold=sys.maxsize)
 # np.warnings.simplefilter("ignore", category=RuntimeWarning)
 
@@ -75,14 +73,6 @@ while np.isnan(ecephys_clean[-i]).any():
 ecephys_clean = np.asarray(ecephys_clean[:-i])
 pos_clean = pos_clean[:-i]
 
-"""# Remove intermediate nan values.
-deleteIdx = []
-for i in range(len(sensor0)):
-    if np.isnan(sensor0[i]).any() or np.isnan(sensor1[i]).any():
-        deleteIdx.append(i)
-ecephys_clean = np.delete(ecephys_clean, deleteIdx, axis=0)
-sensor0 = np.delete(sensor0, deleteIdx, axis=0)
-sensor1 = np.delete(sensor1, deleteIdx, axis=0)"""
 
 pos_clean = np.asarray(pos_clean, dtype=object)
 ecephys_clean = np.asarray(ecephys_clean, dtype=object)

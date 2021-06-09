@@ -59,7 +59,7 @@ model.add(keras.layers.Dense(2))
 
 model.summary()
 
-model.compile(optimizer="adam", loss=euclidean_distance_loss)
+model.compile(optimizer="SGD", loss=euclidean_distance_loss)
 # K.set_value(model.optimizer.learning_rate, 0.1)
 hist = model.fit(training_ecephys, training_pos, epochs=EPOCHS, batch_size=BATCHSIZE,
                  validation_data=(testing_ecephys, testing_pos))
