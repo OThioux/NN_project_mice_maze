@@ -7,7 +7,7 @@ import sklearn
 import sklearn.datasets
 from keras import backend as K
 
-EPOCHS = 10
+EPOCHS = 20
 BATCHSIZE = 500
 HINDSIGHT = 4
 num_folds = 4
@@ -32,8 +32,10 @@ for j in range(len(ecephys_sep)):
         for i in range(len(ecephys_sep[j][HINDSIGHT:])):
             ecephys_data_past.append(ecephys_sep[j][i:HINDSIGHT + i + 1])
             pos_data.append(pos_data_sep[j][HINDSIGHT + i])
-ecephys_data_past = np.asarray(ecephys_data_past)
-pos_data = np.asarray(pos_data)
+ecephys_data_past = np.asarray(ecephys_data_past[50000:380000])
+pos_data = np.asarray(pos_data[50000:380000])
+ecephys_sep = None
+pos_data_sep = None
 
 # Define the K-fold Cross Validator
 kfold = KFold(n_splits=num_folds, shuffle=True)
@@ -72,6 +74,6 @@ plt.ylabel('loss')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper right')
 plt.show()
-plt.savefig("FFN_model_plot_DistributedSampling.png")
+plt.savefig("FFN_model_plot_smol_DistributedSampling.png")
 
-model.save("FFN_Model_DistributedSampling.h5")
+model.save("FFN_Model_smol_DistributedSampling.h5")

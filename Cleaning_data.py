@@ -40,10 +40,13 @@ j = int((t - t_pos) / t_ece)
 # We now cut the electrophysiology data.
 ecephys = ecephys[j:]
 
+sample_size = len(sensor0)
 ecephys_clean = [[]]
 pos_clean = [[]]
 idx = 0
 nan_intervals = 0
+last = []
+last_n = 0
 for n in range(len(sensor0)):
     # Because the electrophysiology data is effectively 1 time sample in the past we take the interval between
     # the sample n and n+1
@@ -54,11 +57,20 @@ for n in range(len(sensor0)):
     end_sample = int(sample_time / t_ece)
     # Calculate the interval mean over axis 1, which means per electrode we take the average over the interval.
     interval = np.asarray(ecephys[start_sample:end_sample])
-
+    if n % 10000 == 0:
+        print("Dealing with sample " + str(int(n / 1000)) + "," + "000" + " of " + str(sample_size))
     if not np.isnan(interval).any() and not np.isnan(sensor0[n]).any() and not np.isnan(sensor1[n]).any():
+        if pos_clean[idx] == []:
+            print(last)
+            print(np.nanmean([sensor0[n], sensor1[n]], axis=0))
+            print("Diff:" + str(n-last_n))
+        last_n = n
+        last = np.nanmean([sensor0[n], sensor1[n]], axis=0)
         interval_mean = np.nanmean(interval, axis=0)
         ecephys_clean[idx].append(interval_mean)
         pos_clean[idx].append(np.nanmean([sensor0[n], sensor1[n]], axis=0))
+
+
     elif not pos_clean[idx] == []:
         ecephys_clean.append([])
         pos_clean.append([])
@@ -70,16 +82,23 @@ i = 1
 while np.isnan(ecephys_clean[-i]).any():
     i += 1
 
-ecephys_clean = np.asarray(ecephys_clean[:-i])
+ecephys_clean = np.asarray(ecephys_clean[:-i], dtype=object)
 pos_clean = pos_clean[:-i]
 
+largest = 0
+largest_idx = 0
+for i in range(len(ecephys_clean)):
+    print("For i in " + str(ecephys_clean.shape) + " len == " + str(len(ecephys_clean[i])))
+    if len(ecephys_clean[i]) > largest:
+        largest = len(ecephys_clean[i])
+        largest_idx = i
 
-pos_clean = np.asarray(pos_clean, dtype=object)
-ecephys_clean = np.asarray(ecephys_clean, dtype=object)
+pos_clean = np.asarray(pos_clean[largest_idx])
+ecephys_clean = np.asarray(ecephys_clean[largest_idx])
 
 # Save the data
-np.save(SENSOR_DATA_NAME + "_cleaned_sep.npy", pos_clean)
-np.save(ECEPHYS_DATA_NAME + "_cleaned_sep.npy", ecephys_clean)
+np.save(SENSOR_DATA_NAME + "_cleaned_largest_sep.npy", pos_clean)
+np.save(ECEPHYS_DATA_NAME + "_cleaned_largest_sep.npy", ecephys_clean)
 
 # Print stats
 print("Position data:")
