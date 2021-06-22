@@ -127,6 +127,7 @@ def fuckyou(arr):
 
 
 io = NWBHDF5IO(os.path.dirname(os.path.abspath(__file__))
-               + "/sub-YutaMouse37_ses-YutaMouse37-150609_behavior+ecephys.nwb", "r")
+               + "/sub-YutaMouse23/sub-YutaMouse23_ses-YutaMouse23-140804_behavior+ecephys.nwb", "r")
+# "/sub-YutaMouse37_ses-YutaMouse37-150609_behavior+ecephys.nwb"
 nwbfile_in = io.read()
 navigate(nwbfile_in)

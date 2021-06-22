@@ -5,14 +5,14 @@ import numpy as np
 np.set_printoptions(threshold=sys.maxsize)
 # np.warnings.simplefilter("ignore", category=RuntimeWarning)
 
-SENSOR_DATA_NAME = "NN_projectPosDatSensor"
-ECEPHYS_DATA_NAME = "Test"
+SENSOR_DATA_NAME = "Yuta23_data/NN_projectYutamouse23_posdata_5_"
+ECEPHYS_DATA_NAME = "Yuta23_data/NN_projectYutaMouse23_ecephys_5"
 
 # Load both sensor 0 and 1
 sensor0 = np.load(SENSOR_DATA_NAME + "0.npy")
 sensor1 = np.load(SENSOR_DATA_NAME + "1.npy")
 # These are the sensor frequencies as defined by the database.
-SENSOR_FREQ = 39
+SENSOR_FREQ = 39.0625
 ECEPHYS_FREQ = 1250
 # Load the electrophysiology data.
 ecephys = np.load(ECEPHYS_DATA_NAME + ".npy")

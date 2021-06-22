@@ -3,20 +3,22 @@ from sklearn.linear_model import LinearRegression
 
 
 def eucledian_dist(pos1, pos2):
-    x = pos1[0] - pos2[0]
-    y = pos1[1] - pos2[1]
     return np.sqrt(np.sum(np.square(pos1 - pos2), axis=-1))
 
 
 training_ratio = 0.1
+training_data = int(60 * 32 * 19.5)
 
-ecephys_sep = np.load("Test_cleaned_largest_sep.npy", allow_pickle=True)
-pos_data_sep = np.load("NN_projectPosDatSensor_cleaned_largest_sep.npy", allow_pickle=True)
+ecephys_sep = np.load("Yuta23_data/4/NN_project_Yutamouse23_4_ecephys_cleaned_sep_fft.npy", allow_pickle=True)
+pos_data_sep = np.load("Yuta23_data/4/NN_project_Yutamouse23_4_posdata_cleaned_sep_fft.npy", allow_pickle=True)
+ecephys_sep = ecephys_sep
+pos_data_sep = pos_data_sep
 print(pos_data_sep.shape)
 print(ecephys_sep.shape)
 
-ecephys_sep.reshape(-1, 64)
-limit = int(training_ratio * len(ecephys_sep))
+x, y, z = ecephys_sep.shape
+ecephys_sep = ecephys_sep.reshape(x, y*z)
+limit = training_data
 print("Limit == " + str(limit))
 
 training_ecephys = ecephys_sep[:limit]
@@ -46,3 +48,4 @@ for i in range(len(testing_ecephys)):
 
 print("Results : " + str(np.mean(dist)))
 print("Confint: " + str(np.percentile(dist, [2.5, 97.5])))
+

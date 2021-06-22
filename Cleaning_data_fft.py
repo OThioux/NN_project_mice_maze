@@ -3,18 +3,29 @@ import sys
 import numpy as np
 
 
+def euclidean_dist(pos1, pos2):
+    return np.sqrt(np.sum(np.square(pos1 - pos2), axis=-1))
+
+
+def mean_dist(points):
+    points = np.asarray(points)
+    mean_point = points[:60*10*39].mean(axis=0)
+    distances = euclidean_dist(points, [mean_point] * len(points))
+    avg_distance = np.asarray(distances).mean()
+    return avg_distance
+
 
 np.set_printoptions(threshold=sys.maxsize)
 # np.warnings.simplefilter("ignore", category=RuntimeWarning)
 
-SENSOR_DATA_NAME = "NN_projectPosDatSensor"
-ECEPHYS_DATA_NAME = "Test"
+SENSOR_DATA_NAME = "Yuta23_data/4/NN_project_Yutamouse23_4_posdata"
+ECEPHYS_DATA_NAME = "Yuta23_data/4/NN_project_Yutamouse23_4_ecephys"
 
 # Load both sensor 0 and 1
 sensor0 = np.load(SENSOR_DATA_NAME + "0.npy")
 sensor1 = np.load(SENSOR_DATA_NAME + "1.npy")
 # These are the sensor frequencies as defined by the database.
-SENSOR_FREQ = 39
+SENSOR_FREQ = 39.0625
 ECEPHYS_FREQ = 1250
 # Load the electrophysiology data.
 ecephys = np.load(ECEPHYS_DATA_NAME + ".npy")
@@ -47,11 +58,13 @@ ecephys_clean = [[]]
 pos_clean = [[]]
 idx = 0
 nan_intervals = 0
-for n in range(len(sensor0)):
+last_n = 0
+for n in range(int(len(sensor0)/2)):
+    n = n * 2
     # Because the electrophysiology data is effectively 1 time sample in the past we take the interval between
     # the sample n and n+1
     sample_time = (n + 1) * t_pos
-    interval_start = n * t_pos
+    interval_start = (n - 1) * t_pos
     # Calculate the starting and ending samples.
     start_sample = int(interval_start / t_ece)
     end_sample = int(sample_time / t_ece)
@@ -61,10 +74,11 @@ for n in range(len(sensor0)):
         print("Dealing with sample " + str(int(n / 1000)) + "," + "000" + " of " + str(sample_size))
     if not np.isnan(interval).any() and not np.isnan(sensor0[n]).any() and not np.isnan(sensor1[n]).any() \
             and len(interval) >= 32:
-        interval_fft = np.real(np.fft.fft(interval, n=6, axis=0))
+        interval_fft = np.real(np.fft.fft(interval, n=12, axis=0))
         ecephys_clean[idx].append(interval_fft)
         pos_clean[idx].append(np.nanmean([sensor0[n], sensor1[n]], axis=0))
-    elif not pos_clean[idx] == []:
+        last_n = n
+    elif not pos_clean[idx] == [] and n - last_n > 5:
         ecephys_clean.append([])
         pos_clean.append([])
         idx += 1
@@ -79,19 +93,20 @@ while np.isnan(ecephys_clean[-i]).any():
     i += 1
 
 ecephys_clean = np.asarray(ecephys_clean[:-i], dtype=object)
-pos_clean = np.asarray(pos_clean[:-i], dtype=object)
+pos_clean = pos_clean[:-i]
 
-"""# Remove intermediate nan values.
-deleteIdx = []
-for i in range(len(sensor0)):
-    if np.isnan(sensor0[i]).any() or np.isnan(sensor1[i]).any():
-        deleteIdx.append(i)
-ecephys_clean = np.delete(ecephys_clean, deleteIdx, axis=0)
-sensor0 = np.delete(sensor0, deleteIdx, axis=0)
-sensor1 = np.delete(sensor1, deleteIdx, axis=0)"""
+largest = 0
+largest_idx = 0
+for i in range(len(ecephys_clean)):
+    print("For i in " + str(ecephys_clean.shape) + " len == " + str(len(ecephys_clean[i])), end="")
+    dist_mean = mean_dist(pos_clean[i])
+    print(" Mean distance = " + str(dist_mean))
+    if 200 > dist_mean > largest and len(ecephys_clean[i]) > 20000:
+        largest = dist_mean
+        largest_idx = i
 
-"""pos_clean = np.asarray(pos_clean, dtype=object)
-ecephys_clean = np.asarray(ecephys_clean, dtype=object)"""
+pos_clean = np.asarray(pos_clean[largest_idx])
+ecephys_clean = np.asarray(ecephys_clean[largest_idx])
 
 # Save the data
 print("Saving...")
@@ -103,3 +118,5 @@ print("Position data:")
 print(pos_clean.shape)
 print("Electrophysiology data:")
 print(ecephys_clean.shape)
+print("Mean distance:")
+print(largest)

@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-pos_dat = np.load("NN_projectPosDatSensor1.npy")
+pos_dat = np.load("/Yuta23_data")
 y = pos_dat[1000:2000, 1]
 x = pos_dat[1000:2000, 0]
 plt.scatter(x, y)
