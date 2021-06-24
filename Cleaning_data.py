@@ -5,8 +5,8 @@ import numpy as np
 np.set_printoptions(threshold=sys.maxsize)
 # np.warnings.simplefilter("ignore", category=RuntimeWarning)
 
-SENSOR_DATA_NAME = "Yuta23_data/NN_projectYutamouse23_posdata_5_"
-ECEPHYS_DATA_NAME = "Yuta23_data/NN_projectYutaMouse23_ecephys_5"
+SENSOR_DATA_NAME = "Yuta23_data/4/NN_project_Yutamouse23_4_posdata"
+ECEPHYS_DATA_NAME = "Yuta23_data/4/NN_project_Yutamouse23_4_ecephys"
 
 # Load both sensor 0 and 1
 sensor0 = np.load(SENSOR_DATA_NAME + "0.npy")

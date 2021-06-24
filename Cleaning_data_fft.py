@@ -18,8 +18,8 @@ def mean_dist(points):
 np.set_printoptions(threshold=sys.maxsize)
 # np.warnings.simplefilter("ignore", category=RuntimeWarning)
 
-SENSOR_DATA_NAME = "Yuta23_data/4/NN_project_Yutamouse23_4_posdata"
-ECEPHYS_DATA_NAME = "Yuta23_data/4/NN_project_Yutamouse23_4_ecephys"
+SENSOR_DATA_NAME = "Yuta23_data/5/NN_projectYutamouse23_posdata_5_"
+ECEPHYS_DATA_NAME = "Yuta23_data/5/NN_projectYutaMouse23_ecephys_5"
 
 # Load both sensor 0 and 1
 sensor0 = np.load(SENSOR_DATA_NAME + "0.npy")
@@ -101,7 +101,7 @@ for i in range(len(ecephys_clean)):
     print("For i in " + str(ecephys_clean.shape) + " len == " + str(len(ecephys_clean[i])), end="")
     dist_mean = mean_dist(pos_clean[i])
     print(" Mean distance = " + str(dist_mean))
-    if 200 > dist_mean > largest and len(ecephys_clean[i]) > 20000:
+    if 300 > dist_mean > largest and len(ecephys_clean[i]) > 80000:
         largest = dist_mean
         largest_idx = i
 

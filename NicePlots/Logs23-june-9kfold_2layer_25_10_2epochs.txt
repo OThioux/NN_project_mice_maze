@@ -1,0 +1,336 @@
+D:\Users\odilo\Desktop\NNProjectFiles\venv\Scripts\python.exe D:/Users/odilo/Desktop/NNProjectFiles/NN_project/FNN_K_fold.py
+2021-06-23 09:57:14.849456: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cudart64_110.dll
+2021-06-23 09:57:36.156073: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library nvcuda.dll
+2021-06-23 09:57:36.222685: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1733] Found device 0 with properties: 
+pciBusID: 0000:01:00.0 name: NVIDIA GeForce GTX 970 computeCapability: 5.2
+coreClock: 1.1775GHz coreCount: 13 deviceMemorySize: 4.00GiB deviceMemoryBandwidth: 208.91GiB/s
+2021-06-23 09:57:36.224063: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cudart64_110.dll
+2021-06-23 09:57:36.785702: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cublas64_11.dll
+2021-06-23 09:57:36.785848: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cublasLt64_11.dll
+2021-06-23 09:57:37.204947: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cufft64_10.dll
+2021-06-23 09:57:37.247598: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library curand64_10.dll
+2021-06-23 09:57:37.523228: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cusolver64_11.dll
+2021-06-23 09:57:37.774773: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cusparse64_11.dll
+2021-06-23 09:57:39.102617: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cudnn64_8.dll
+Num GPUs Available:  1
+2021-06-23 09:57:39.146119: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1871] Adding visible gpu devices: 0
+2021-06-23 09:57:39.147335: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX AVX2
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2021-06-23 09:57:39.149948: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1733] Found device 0 with properties: 
+pciBusID: 0000:01:00.0 name: NVIDIA GeForce GTX 970 computeCapability: 5.2
+coreClock: 1.1775GHz coreCount: 13 deviceMemorySize: 4.00GiB deviceMemoryBandwidth: 208.91GiB/s
+2021-06-23 09:57:39.150507: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1871] Adding visible gpu devices: 0
+2021-06-23 09:57:41.256294: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1258] Device interconnect StreamExecutor with strength 1 edge matrix:
+2021-06-23 09:57:41.256485: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1264]      0 
+2021-06-23 09:57:41.256572: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1277] 0:   N 
+2021-06-23 09:57:41.260800: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1418] Created TensorFlow device (/device:GPU:0 with 2776 MB memory) -> physical GPU (device: 0, name: NVIDIA GeForce GTX 970, pci bus id: 0000:01:00.0, compute capability: 5.2)
+Default GPU Device: /device:GPU:0
+2021-06-23 09:57:42.959308: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1733] Found device 0 with properties: 
+pciBusID: 0000:01:00.0 name: NVIDIA GeForce GTX 970 computeCapability: 5.2
+coreClock: 1.1775GHz coreCount: 13 deviceMemorySize: 4.00GiB deviceMemoryBandwidth: 208.91GiB/s
+2021-06-23 09:57:42.960871: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1871] Adding visible gpu devices: 0
+2021-06-23 09:57:42.961029: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1258] Device interconnect StreamExecutor with strength 1 edge matrix:
+2021-06-23 09:57:42.961571: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1264]      0 
+2021-06-23 09:57:42.961659: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1277] 0:   N 
+2021-06-23 09:57:42.962040: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1418] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 2776 MB memory) -> physical GPU (device: 0, name: NVIDIA GeForce GTX 970, pci bus id: 0000:01:00.0, compute capability: 5.2)
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten (Flatten)            (None, 2340)              0         
+_________________________________________________________________
+dense (Dense)                (None, 25)                58525     
+_________________________________________________________________
+dense_1 (Dense)              (None, 10)                260       
+_________________________________________________________________
+dense_2 (Dense)              (None, 2)                 22        
+=================================================================
+Total params: 58,807
+Trainable params: 58,807
+Non-trainable params: 0
+_________________________________________________________________
+------------------------------------------------------------------------
+Training for fold 1 ...
+Data split: Training - (241786, 3, 12, 65) Testing - (30224, 3, 12, 65)
+                       (241786, 2)          (30224, 2)
+2021-06-23 09:57:52.921045: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:176] None of the MLIR Optimization Passes are enabled (registered 2)
+2021-06-23 09:57:54.080187: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cublas64_11.dll
+2021-06-23 09:57:55.555524: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cublasLt64_11.dll
+9672/9672 [==============================] - 32s 3ms/step - loss: 8.7190 - val_loss: 19.1752
+9672/9672 [==============================] - 28s 3ms/step - loss: 6.5271 - val_loss: 15.9685
+Testing data: 
+Results : 15.960744296570311
+Confint: [13.67156516 18.73313707]
+Guessing: 14.920585606240731
+Confint: [ 3.90719726 20.83585669]
+
+Linear model:
+(241786, 12, 65)
+Testing data: 
+Results : 17.324537568313893
+Confint: [13.21229946 20.65223583]
+Model: "sequential_1"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten_1 (Flatten)          (None, 2340)              0         
+_________________________________________________________________
+dense_3 (Dense)              (None, 25)                58525     
+_________________________________________________________________
+dense_4 (Dense)              (None, 10)                260       
+_________________________________________________________________
+dense_5 (Dense)              (None, 2)                 22        
+=================================================================
+Total params: 58,807
+Trainable params: 58,807
+Non-trainable params: 0
+_________________________________________________________________
+------------------------------------------------------------------------
+Training for fold 2 ...
+Data split: Training - (241786, 3, 12, 65) Testing - (30224, 3, 12, 65)
+                       (241786, 2)          (30224, 2)
+9672/9672 [==============================] - 30s 3ms/step - loss: 9.8461 - val_loss: 8.4092
+9672/9672 [==============================] - 31s 3ms/step - loss: 7.7232 - val_loss: 6.3844
+Testing data: 
+Results : 6.374008935274971
+Confint: [4.73371916 6.46380984]
+Guessing: 8.713086951293151
+Confint: [ 0.85530131 26.12736994]
+
+Linear model:
+(241786, 12, 65)
+Testing data: 
+Results : 8.44577965145705
+Confint: [ 6.41669341 10.23494046]
+Model: "sequential_2"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten_2 (Flatten)          (None, 2340)              0         
+_________________________________________________________________
+dense_6 (Dense)              (None, 25)                58525     
+_________________________________________________________________
+dense_7 (Dense)              (None, 10)                260       
+_________________________________________________________________
+dense_8 (Dense)              (None, 2)                 22        
+=================================================================
+Total params: 58,807
+Trainable params: 58,807
+Non-trainable params: 0
+_________________________________________________________________
+------------------------------------------------------------------------
+Training for fold 3 ...
+Data split: Training - (241786, 3, 12, 65) Testing - (30224, 3, 12, 65)
+                       (241786, 2)          (30224, 2)
+9672/9672 [==============================] - 37s 4ms/step - loss: 9.7999 - val_loss: 5.4790
+9672/9672 [==============================] - 28s 3ms/step - loss: 7.9606 - val_loss: 4.4933
+Testing data: 
+Results : 4.477018469035901
+Confint: [2.16722766 6.48543851]
+Guessing: 9.875791982174125
+Confint: [ 0.78923329 27.56348525]
+
+Linear model:
+(241786, 12, 65)
+Testing data: 
+Results : 7.7788350550643734
+Confint: [ 4.96861214 10.2855886 ]
+Model: "sequential_3"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten_3 (Flatten)          (None, 2340)              0         
+_________________________________________________________________
+dense_9 (Dense)              (None, 25)                58525     
+_________________________________________________________________
+dense_10 (Dense)             (None, 10)                260       
+_________________________________________________________________
+dense_11 (Dense)             (None, 2)                 22        
+=================================================================
+Total params: 58,807
+Trainable params: 58,807
+Non-trainable params: 0
+_________________________________________________________________
+------------------------------------------------------------------------
+Training for fold 4 ...
+Data split: Training - (241787, 3, 12, 65) Testing - (30223, 3, 12, 65)
+                       (241787, 2)          (30223, 2)
+9672/9672 [==============================] - 32s 3ms/step - loss: 10.8980 - val_loss: 1.7118
+9672/9672 [==============================] - 29s 3ms/step - loss: 8.2927 - val_loss: 2.0683
+Testing data: 
+Results : 2.0564792670661944
+Confint: [0.57343817 3.6906932 ]
+Guessing: 8.520381129691433
+Confint: [ 0.7133676  24.56039032]
+
+Linear model:
+(241787, 12, 65)
+Testing data: 
+Results : 4.129564884935436
+Confint: [1.90946671 6.23562129]
+Model: "sequential_4"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten_4 (Flatten)          (None, 2340)              0         
+_________________________________________________________________
+dense_12 (Dense)             (None, 25)                58525     
+_________________________________________________________________
+dense_13 (Dense)             (None, 10)                260       
+_________________________________________________________________
+dense_14 (Dense)             (None, 2)                 22        
+=================================================================
+Total params: 58,807
+Trainable params: 58,807
+Non-trainable params: 0
+_________________________________________________________________
+------------------------------------------------------------------------
+Training for fold 5 ...
+Data split: Training - (241787, 3, 12, 65) Testing - (30223, 3, 12, 65)
+                       (241787, 2)          (30223, 2)
+9672/9672 [==============================] - 29s 3ms/step - loss: 10.9853 - val_loss: 1.7429
+9672/9672 [==============================] - 28s 3ms/step - loss: 8.4470 - val_loss: 2.2706
+Testing data: 
+Results : 2.113585874085517
+Confint: [0.78319392 3.15690434]
+Guessing: 8.452378530707703
+Confint: [ 0.65381955 22.62490776]
+
+Linear model:
+(241787, 12, 65)
+Testing data: 
+Results : 4.26040422677863
+Confint: [2.33264682 6.09619959]
+Model: "sequential_5"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten_5 (Flatten)          (None, 2340)              0         
+_________________________________________________________________
+dense_15 (Dense)             (None, 25)                58525     
+_________________________________________________________________
+dense_16 (Dense)             (None, 10)                260       
+_________________________________________________________________
+dense_17 (Dense)             (None, 2)                 22        
+=================================================================
+Total params: 58,807
+Trainable params: 58,807
+Non-trainable params: 0
+_________________________________________________________________
+------------------------------------------------------------------------
+Training for fold 6 ...
+Data split: Training - (241787, 3, 12, 65) Testing - (30223, 3, 12, 65)
+                       (241787, 2)          (30223, 2)
+9672/9672 [==============================] - 28s 3ms/step - loss: 11.0382 - val_loss: 5.8891
+9672/9672 [==============================] - 28s 3ms/step - loss: 8.8384 - val_loss: 5.0082
+Testing data: 
+Results : 4.179935293838535
+Confint: [2.60572165 5.86645984]
+Guessing: 9.331834115196425
+Confint: [ 1.40325436 26.91817284]
+
+Linear model:
+(241787, 12, 65)
+Testing data: 
+Results : 9.234861422008448
+Confint: [ 6.30703743 11.89536726]
+Model: "sequential_6"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten_6 (Flatten)          (None, 2340)              0         
+_________________________________________________________________
+dense_18 (Dense)             (None, 25)                58525     
+_________________________________________________________________
+dense_19 (Dense)             (None, 10)                260       
+_________________________________________________________________
+dense_20 (Dense)             (None, 2)                 22        
+=================================================================
+Total params: 58,807
+Trainable params: 58,807
+Non-trainable params: 0
+_________________________________________________________________
+------------------------------------------------------------------------
+Training for fold 7 ...
+Data split: Training - (241787, 3, 12, 65) Testing - (30223, 3, 12, 65)
+                       (241787, 2)          (30223, 2)
+9672/9672 [==============================] - 33s 3ms/step - loss: 10.1038 - val_loss: 4.3704
+9672/9672 [==============================] - 29s 3ms/step - loss: 8.1947 - val_loss: 2.7439
+Testing data: 
+Results : 2.7334392579617695
+Confint: [0.75675932 4.87945739]
+Guessing: 8.495801648231078
+Confint: [ 1.18215714 23.17012868]
+
+Linear model:
+(241787, 12, 65)
+Testing data: 
+Results : 5.346025127456705
+Confint: [3.14135919 7.26346521]
+Model: "sequential_7"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten_7 (Flatten)          (None, 2340)              0         
+_________________________________________________________________
+dense_21 (Dense)             (None, 25)                58525     
+_________________________________________________________________
+dense_22 (Dense)             (None, 10)                260       
+_________________________________________________________________
+dense_23 (Dense)             (None, 2)                 22        
+=================================================================
+Total params: 58,807
+Trainable params: 58,807
+Non-trainable params: 0
+_________________________________________________________________
+------------------------------------------------------------------------
+Training for fold 8 ...
+Data split: Training - (241787, 3, 12, 65) Testing - (30223, 3, 12, 65)
+                       (241787, 2)          (30223, 2)
+9672/9672 [==============================] - 29s 3ms/step - loss: 9.2952 - val_loss: 12.6048
+9672/9672 [==============================] - 30s 3ms/step - loss: 6.8563 - val_loss: 13.6383
+Testing data: 
+Results : 13.626765336538156
+Confint: [ 0.83828096 23.55692527]
+Guessing: 12.89841780639903
+Confint: [ 3.10388087 18.87381292]
+
+Linear model:
+(241787, 12, 65)
+Testing data: 
+Results : 12.034462392576998
+Confint: [ 3.89033043 20.33319344]
+Model: "sequential_8"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten_8 (Flatten)          (None, 2340)              0         
+_________________________________________________________________
+dense_24 (Dense)             (None, 25)                58525     
+_________________________________________________________________
+dense_25 (Dense)             (None, 10)                260       
+_________________________________________________________________
+dense_26 (Dense)             (None, 2)                 22        
+=================================================================
+Total params: 58,807
+Trainable params: 58,807
+Non-trainable params: 0
+_________________________________________________________________
+------------------------------------------------------------------------
+Training for fold 9 ...
+Data split: Training - (241787, 3, 12, 65) Testing - (30223, 3, 12, 65)
+                       (241787, 2)          (30223, 2)
+9672/9672 [==============================] - 32s 3ms/step - loss: 9.8396 - val_loss: 18.3031
+9672/9672 [==============================] - 29s 3ms/step - loss: 6.2323 - val_loss: 18.9109
+Testing data: 
+Results : 18.84937403875656
+Confint: [10.7339192  24.10763687]
+Guessing: 13.514456410546286
+Confint: [ 1.70322944 19.92329954]
+
+Linear model:
+(241787, 12, 65)
+Testing data: 
+Results : 16.839154445537353
+Confint: [ 9.37348074 21.45178584]
+Done

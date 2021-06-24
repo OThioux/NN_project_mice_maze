@@ -1,0 +1,428 @@
+D:\Users\odilo\Desktop\NNProjectFiles\venv\Scripts\python.exe D:/Users/odilo/Desktop/NNProjectFiles/NN_project/FNN_K_fold.py
+2021-06-23 09:17:37.168550: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cudart64_110.dll
+2021-06-23 09:17:58.524045: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library nvcuda.dll
+2021-06-23 09:17:58.581991: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1733] Found device 0 with properties: 
+pciBusID: 0000:01:00.0 name: NVIDIA GeForce GTX 970 computeCapability: 5.2
+coreClock: 1.1775GHz coreCount: 13 deviceMemorySize: 4.00GiB deviceMemoryBandwidth: 208.91GiB/s
+2021-06-23 09:17:58.583010: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cudart64_110.dll
+2021-06-23 09:17:58.625130: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cublas64_11.dll
+2021-06-23 09:17:58.625278: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cublasLt64_11.dll
+2021-06-23 09:17:58.660111: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cufft64_10.dll
+2021-06-23 09:17:58.665671: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library curand64_10.dll
+2021-06-23 09:17:58.677919: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cusolver64_11.dll
+2021-06-23 09:17:58.689195: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cusparse64_11.dll
+2021-06-23 09:17:58.691150: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cudnn64_8.dll
+Num GPUs Available:  1
+2021-06-23 09:17:58.693181: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1871] Adding visible gpu devices: 0
+2021-06-23 09:17:58.694415: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX AVX2
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2021-06-23 09:17:58.697527: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1733] Found device 0 with properties: 
+pciBusID: 0000:01:00.0 name: NVIDIA GeForce GTX 970 computeCapability: 5.2
+coreClock: 1.1775GHz coreCount: 13 deviceMemorySize: 4.00GiB deviceMemoryBandwidth: 208.91GiB/s
+2021-06-23 09:17:58.698360: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1871] Adding visible gpu devices: 0
+Default GPU Device: /device:GPU:0
+2021-06-23 09:18:00.838784: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1258] Device interconnect StreamExecutor with strength 1 edge matrix:
+2021-06-23 09:18:00.838974: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1264]      0 
+2021-06-23 09:18:00.839070: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1277] 0:   N 
+2021-06-23 09:18:00.841735: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1418] Created TensorFlow device (/device:GPU:0 with 2776 MB memory) -> physical GPU (device: 0, name: NVIDIA GeForce GTX 970, pci bus id: 0000:01:00.0, compute capability: 5.2)
+2021-06-23 09:18:02.483090: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1733] Found device 0 with properties: 
+pciBusID: 0000:01:00.0 name: NVIDIA GeForce GTX 970 computeCapability: 5.2
+coreClock: 1.1775GHz coreCount: 13 deviceMemorySize: 4.00GiB deviceMemoryBandwidth: 208.91GiB/s
+2021-06-23 09:18:02.483392: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1871] Adding visible gpu devices: 0
+2021-06-23 09:18:02.483604: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1258] Device interconnect StreamExecutor with strength 1 edge matrix:
+2021-06-23 09:18:02.483787: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1264]      0 
+2021-06-23 09:18:02.484351: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1277] 0:   N 
+2021-06-23 09:18:02.484541: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1418] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 2776 MB memory) -> physical GPU (device: 0, name: NVIDIA GeForce GTX 970, pci bus id: 0000:01:00.0, compute capability: 5.2)
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten (Flatten)            (None, 2340)              0         
+_________________________________________________________________
+dense (Dense)                (None, 25)                58525     
+_________________________________________________________________
+dense_1 (Dense)              (None, 10)                260       
+_________________________________________________________________
+dense_2 (Dense)              (None, 2)                 22        
+=================================================================
+Total params: 58,807
+Trainable params: 58,807
+Non-trainable params: 0
+_________________________________________________________________
+------------------------------------------------------------------------
+Training for fold 1 ...
+Data split: Training - (241786, 3, 12, 65) Testing - (30224, 3, 12, 65)
+                       (241786, 2)          (30224, 2)
+2021-06-23 09:18:15.539254: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:176] None of the MLIR Optimization Passes are enabled (registered 2)
+Epoch 1/3
+2021-06-23 09:18:16.792531: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cublas64_11.dll
+2021-06-23 09:18:17.905230: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cublasLt64_11.dll
+9672/9672 [==============================] - 32s 3ms/step - loss: 8.7797 - val_loss: 16.1134
+Epoch 2/3
+9672/9672 [==============================] - 28s 3ms/step - loss: 6.8001 - val_loss: 16.3444
+Epoch 3/3
+9672/9672 [==============================] - 28s 3ms/step - loss: 6.7914 - val_loss: 14.0283
+Epoch 1/3
+9672/9672 [==============================] - 30s 3ms/step - loss: 6.5321 - val_loss: 16.3204
+Epoch 2/3
+9672/9672 [==============================] - 31s 3ms/step - loss: 6.5308 - val_loss: 15.7357
+Epoch 3/3
+9672/9672 [==============================] - 29s 3ms/step - loss: 6.5305 - val_loss: 15.9344
+Testing data: 
+Results : 15.921915351912654
+Confint: [13.48189972 18.70996092]
+Guessing: 14.920585606240731
+Confint: [ 3.90719726 20.83585669]
+
+Linear model:
+(241786, 12, 65)
+Testing data: 
+Results : 17.324537568313893
+Confint: [13.21229946 20.65223583]
+Model: "sequential_1"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten_1 (Flatten)          (None, 2340)              0         
+_________________________________________________________________
+dense_3 (Dense)              (None, 25)                58525     
+_________________________________________________________________
+dense_4 (Dense)              (None, 10)                260       
+_________________________________________________________________
+dense_5 (Dense)              (None, 2)                 22        
+=================================================================
+Total params: 58,807
+Trainable params: 58,807
+Non-trainable params: 0
+_________________________________________________________________
+------------------------------------------------------------------------
+Training for fold 2 ...
+Data split: Training - (241786, 3, 12, 65) Testing - (30224, 3, 12, 65)
+                       (241786, 2)          (30224, 2)
+Epoch 1/3
+9672/9672 [==============================] - 31s 3ms/step - loss: 9.7768 - val_loss: 5.9003
+Epoch 2/3
+9672/9672 [==============================] - 30s 3ms/step - loss: 8.1184 - val_loss: 8.6645
+Epoch 3/3
+9672/9672 [==============================] - 29s 3ms/step - loss: 8.1066 - val_loss: 5.4959
+Epoch 1/3
+9672/9672 [==============================] - 32s 3ms/step - loss: 7.7538 - val_loss: 6.4304
+Epoch 2/3
+9672/9672 [==============================] - 29s 3ms/step - loss: 7.7530 - val_loss: 6.3557
+Epoch 3/3
+9672/9672 [==============================] - 29s 3ms/step - loss: 7.7526 - val_loss: 6.4202
+Testing data: 
+Results : 6.379282205258479
+Confint: [4.79570442 6.59365517]
+Guessing: 8.713086951293151
+Confint: [ 0.85530131 26.12736994]
+
+Linear model:
+(241786, 12, 65)
+Testing data: 
+Results : 8.44577965145705
+Confint: [ 6.41669341 10.23494046]
+Model: "sequential_2"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten_2 (Flatten)          (None, 2340)              0         
+_________________________________________________________________
+dense_6 (Dense)              (None, 25)                58525     
+_________________________________________________________________
+dense_7 (Dense)              (None, 10)                260       
+_________________________________________________________________
+dense_8 (Dense)              (None, 2)                 22        
+=================================================================
+Total params: 58,807
+Trainable params: 58,807
+Non-trainable params: 0
+_________________________________________________________________
+------------------------------------------------------------------------
+Training for fold 3 ...
+Data split: Training - (241786, 3, 12, 65) Testing - (30224, 3, 12, 65)
+                       (241786, 2)          (30224, 2)
+Epoch 1/3
+9672/9672 [==============================] - 32s 3ms/step - loss: 10.5109 - val_loss: 5.3689
+Epoch 2/3
+9672/9672 [==============================] - 28s 3ms/step - loss: 8.2215 - val_loss: 5.0498
+Epoch 3/3
+9672/9672 [==============================] - 28s 3ms/step - loss: 8.2212 - val_loss: 4.8066
+Epoch 1/3
+9672/9672 [==============================] - 29s 3ms/step - loss: 7.9900 - val_loss: 4.5132
+Epoch 2/3
+9672/9672 [==============================] - 28s 3ms/step - loss: 7.9898 - val_loss: 4.7715
+Epoch 3/3
+9672/9672 [==============================] - 28s 3ms/step - loss: 7.9894 - val_loss: 5.0327
+Testing data: 
+Results : 4.987040253713584
+Confint: [2.52634338 7.2157625 ]
+Guessing: 9.875791982174125
+Confint: [ 0.78923329 27.56348525]
+
+Linear model:
+(241786, 12, 65)
+Testing data: 
+Results : 7.7788350550643734
+Confint: [ 4.96861214 10.2855886 ]
+Model: "sequential_3"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten_3 (Flatten)          (None, 2340)              0         
+_________________________________________________________________
+dense_9 (Dense)              (None, 25)                58525     
+_________________________________________________________________
+dense_10 (Dense)             (None, 10)                260       
+_________________________________________________________________
+dense_11 (Dense)             (None, 2)                 22        
+=================================================================
+Total params: 58,807
+Trainable params: 58,807
+Non-trainable params: 0
+_________________________________________________________________
+------------------------------------------------------------------------
+Training for fold 4 ...
+Data split: Training - (241787, 3, 12, 65) Testing - (30223, 3, 12, 65)
+                       (241787, 2)          (30223, 2)
+Epoch 1/3
+9672/9672 [==============================] - 37s 4ms/step - loss: 10.6713 - val_loss: 3.5671
+Epoch 2/3
+9672/9672 [==============================] - 30s 3ms/step - loss: 8.5894 - val_loss: 1.8925
+Epoch 3/3
+9672/9672 [==============================] - 29s 3ms/step - loss: 8.5891 - val_loss: 3.1574
+Epoch 1/3
+9672/9672 [==============================] - 31s 3ms/step - loss: 8.3929 - val_loss: 2.1506
+Epoch 2/3
+9672/9672 [==============================] - 29s 3ms/step - loss: 8.3926 - val_loss: 1.8853
+Epoch 3/3
+9672/9672 [==============================] - 29s 3ms/step - loss: 8.3923 - val_loss: 2.1134
+Testing data: 
+Results : 1.9993953671265388
+Confint: [0.46196083 3.55264171]
+Guessing: 8.520381129691433
+Confint: [ 0.7133676  24.56039032]
+
+Linear model:
+(241787, 12, 65)
+Testing data: 
+Results : 4.129564884935436
+Confint: [1.90946671 6.23562129]
+Model: "sequential_4"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten_4 (Flatten)          (None, 2340)              0         
+_________________________________________________________________
+dense_12 (Dense)             (None, 25)                58525     
+_________________________________________________________________
+dense_13 (Dense)             (None, 10)                260       
+_________________________________________________________________
+dense_14 (Dense)             (None, 2)                 22        
+=================================================================
+Total params: 58,807
+Trainable params: 58,807
+Non-trainable params: 0
+_________________________________________________________________
+------------------------------------------------------------------------
+Training for fold 5 ...
+Data split: Training - (241787, 3, 12, 65) Testing - (30223, 3, 12, 65)
+                       (241787, 2)          (30223, 2)
+Epoch 1/3
+9672/9672 [==============================] - 30s 3ms/step - loss: 10.3864 - val_loss: 1.5589
+Epoch 2/3
+9672/9672 [==============================] - 28s 3ms/step - loss: 8.5460 - val_loss: 1.7040
+Epoch 3/3
+9672/9672 [==============================] - 29s 3ms/step - loss: 8.5433 - val_loss: 3.9606
+Epoch 1/3
+9672/9672 [==============================] - 32s 3ms/step - loss: 8.2932 - val_loss: 2.1717
+Epoch 2/3
+9672/9672 [==============================] - 30s 3ms/step - loss: 8.2931 - val_loss: 1.9794
+Epoch 3/3
+9672/9672 [==============================] - 28s 3ms/step - loss: 8.3488 - val_loss: 1.8892
+Testing data: 
+Results : 1.8772904038278415
+Confint: [0.68033346 2.80934669]
+Guessing: 8.452378530707703
+Confint: [ 0.65381955 22.62490776]
+
+Linear model:
+(241787, 12, 65)
+Testing data: 
+Results : 4.26040422677863
+Confint: [2.33264682 6.09619959]
+Model: "sequential_5"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten_5 (Flatten)          (None, 2340)              0         
+_________________________________________________________________
+dense_15 (Dense)             (None, 25)                58525     
+_________________________________________________________________
+dense_16 (Dense)             (None, 10)                260       
+_________________________________________________________________
+dense_17 (Dense)             (None, 2)                 22        
+=================================================================
+Total params: 58,807
+Trainable params: 58,807
+Non-trainable params: 0
+_________________________________________________________________
+------------------------------------------------------------------------
+Training for fold 6 ...
+Data split: Training - (241787, 3, 12, 65) Testing - (30223, 3, 12, 65)
+                       (241787, 2)          (30223, 2)
+Epoch 1/3
+9672/9672 [==============================] - 30s 3ms/step - loss: 10.1016 - val_loss: 4.0437
+Epoch 2/3
+9672/9672 [==============================] - 29s 3ms/step - loss: 8.3678 - val_loss: 3.0684
+Epoch 3/3
+9672/9672 [==============================] - 29s 3ms/step - loss: 8.3696 - val_loss: 3.6790
+Epoch 1/3
+9672/9672 [==============================] - 31s 3ms/step - loss: 8.0272 - val_loss: 4.4642
+Epoch 2/3
+9672/9672 [==============================] - 29s 3ms/step - loss: 8.0269 - val_loss: 4.0743
+Epoch 3/3
+9672/9672 [==============================] - 29s 3ms/step - loss: 8.0266 - val_loss: 3.8888
+Testing data: 
+Results : 3.868247292222873
+Confint: [2.2215574  5.45785465]
+Guessing: 9.331834115196425
+Confint: [ 1.40325436 26.91817284]
+
+Linear model:
+(241787, 12, 65)
+Testing data: 
+Results : 9.234861422008448
+Confint: [ 6.30703743 11.89536726]
+Model: "sequential_6"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten_6 (Flatten)          (None, 2340)              0         
+_________________________________________________________________
+dense_18 (Dense)             (None, 25)                58525     
+_________________________________________________________________
+dense_19 (Dense)             (None, 10)                260       
+_________________________________________________________________
+dense_20 (Dense)             (None, 2)                 22        
+=================================================================
+Total params: 58,807
+Trainable params: 58,807
+Non-trainable params: 0
+_________________________________________________________________
+------------------------------------------------------------------------
+Training for fold 7 ...
+Data split: Training - (241787, 3, 12, 65) Testing - (30223, 3, 12, 65)
+                       (241787, 2)          (30223, 2)
+Epoch 1/3
+9672/9672 [==============================] - 34s 3ms/step - loss: 11.1128 - val_loss: 4.7436
+Epoch 2/3
+9672/9672 [==============================] - 29s 3ms/step - loss: 9.4885 - val_loss: 5.0616
+Epoch 3/3
+9672/9672 [==============================] - 29s 3ms/step - loss: 9.4840 - val_loss: 4.5017
+Epoch 1/3
+9672/9672 [==============================] - 29s 3ms/step - loss: 9.2329 - val_loss: 3.6440
+Epoch 2/3
+9672/9672 [==============================] - 29s 3ms/step - loss: 9.2331 - val_loss: 3.8575
+Epoch 3/3
+9672/9672 [==============================] - 29s 3ms/step - loss: 9.2334 - val_loss: 3.7808
+Testing data: 
+Results : 2.7304940427696502
+Confint: [0.60275975 4.87909537]
+Guessing: 8.495801648231078
+Confint: [ 1.18215714 23.17012868]
+
+Linear model:
+(241787, 12, 65)
+Testing data: 
+Results : 5.346025127456705
+Confint: [3.14135919 7.26346521]
+Model: "sequential_7"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten_7 (Flatten)          (None, 2340)              0         
+_________________________________________________________________
+dense_21 (Dense)             (None, 25)                58525     
+_________________________________________________________________
+dense_22 (Dense)             (None, 10)                260       
+_________________________________________________________________
+dense_23 (Dense)             (None, 2)                 22        
+=================================================================
+Total params: 58,807
+Trainable params: 58,807
+Non-trainable params: 0
+_________________________________________________________________
+------------------------------------------------------------------------
+Training for fold 8 ...
+Data split: Training - (241787, 3, 12, 65) Testing - (30223, 3, 12, 65)
+                       (241787, 2)          (30223, 2)
+Epoch 1/3
+9672/9672 [==============================] - 31s 3ms/step - loss: 8.7633 - val_loss: 12.6837
+Epoch 2/3
+9672/9672 [==============================] - 29s 3ms/step - loss: 7.3971 - val_loss: 15.6901
+Epoch 3/3
+9672/9672 [==============================] - 30s 3ms/step - loss: 7.0730 - val_loss: 14.2790
+Epoch 1/3
+9672/9672 [==============================] - 30s 3ms/step - loss: 6.8383 - val_loss: 13.4629
+Epoch 2/3
+9672/9672 [==============================] - 29s 3ms/step - loss: 6.8383 - val_loss: 13.6900
+Epoch 3/3
+9672/9672 [==============================] - 29s 3ms/step - loss: 6.8384 - val_loss: 13.4087
+Testing data: 
+Results : 13.40050199687887
+Confint: [ 0.62453274 23.25128185]
+Guessing: 12.89841780639903
+Confint: [ 3.10388087 18.87381292]
+
+Linear model:
+(241787, 12, 65)
+Testing data: 
+Results : 12.034462392576998
+Confint: [ 3.89033043 20.33319344]
+Model: "sequential_8"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten_8 (Flatten)          (None, 2340)              0         
+_________________________________________________________________
+dense_24 (Dense)             (None, 25)                58525     
+_________________________________________________________________
+dense_25 (Dense)             (None, 10)                260       
+_________________________________________________________________
+dense_26 (Dense)             (None, 2)                 22        
+=================================================================
+Total params: 58,807
+Trainable params: 58,807
+Non-trainable params: 0
+_________________________________________________________________
+------------------------------------------------------------------------
+Training for fold 9 ...
+Data split: Training - (241787, 3, 12, 65) Testing - (30223, 3, 12, 65)
+                       (241787, 2)          (30223, 2)
+Epoch 1/3
+9672/9672 [==============================] - 34s 3ms/step - loss: 8.5134 - val_loss: 17.6571
+Epoch 2/3
+9672/9672 [==============================] - 29s 3ms/step - loss: 7.2763 - val_loss: 20.6892
+Epoch 3/3
+9672/9672 [==============================] - 28s 3ms/step - loss: 7.2134 - val_loss: 17.2553
+Epoch 1/3
+9672/9672 [==============================] - 30s 3ms/step - loss: 6.1706 - val_loss: 18.8235
+Epoch 2/3
+9672/9672 [==============================] - 29s 3ms/step - loss: 6.1708 - val_loss: 19.1011
+Epoch 3/3
+9672/9672 [==============================] - 29s 3ms/step - loss: 6.1711 - val_loss: 18.6471
+Testing data: 
+Results : 18.637676434204057
+Confint: [10.40018341 23.72692886]
+Guessing: 13.514456410546286
+Confint: [ 1.70322944 19.92329954]
+
+Linear model:
+(241787, 12, 65)
+Testing data: 
+Results : 16.839154445537353
+Confint: [ 9.37348074 21.45178584]
+Done
+
+Process finished with exit code 0

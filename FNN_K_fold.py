@@ -10,10 +10,10 @@ import sklearn.datasets
 from keras import backend as K
 import Largest_smallest_diff
 
-EPOCHS = 5
+EPOCHS = 1
 BATCHSIZE = 25
-HINDSIGHT = 0
-num_folds = 4
+HINDSIGHT = 2
+num_folds = 9
 
 
 def euclidean_distance_loss(y_true, y_pred):
@@ -21,10 +21,13 @@ def euclidean_distance_loss(y_true, y_pred):
 
 
 # loading data
-ecephys_sep = np.load("Yuta23_data/4/NN_project_Yutamouse23_4_ecephys_cleaned_sep_fft.npy", allow_pickle=True)
-pos_data_sep = np.load("Yuta23_data/4/NN_project_Yutamouse23_4_posdata_cleaned_sep_fft.npy", allow_pickle=True)
+ecephys_sep = np.load("Yuta23_data/5/NN_projectYutaMouse23_ecephys_5_cleaned_sep_fft.npy", allow_pickle=True)
+pos_data_sep = np.load("Yuta23_data/5/NN_projectYutamouse23_posdata_5__cleaned_sep_fft.npy", allow_pickle=True)
 
+# Making sure that Tensorflow is using the GPU
 print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
+if (tf.test.gpu_device_name):
+    print("Default GPU Device: {}".format(tf.test.gpu_device_name()))
 
 pos_data = []
 ecephys_data_past = []
@@ -40,6 +43,8 @@ pos_data_sep = None
 # Define the K-fold Cross Validator
 kfold = KFold(n_splits=num_folds)
 
+plt_lines = int(np.sqrt(num_folds) + 0.5)
+fig, axs = plt.subplots(plt_lines, int(num_folds/plt_lines + 0.5))
 fold_no = 1
 hist = []
 loss = []
@@ -55,10 +60,17 @@ for train, test in kfold.split(ecephys_data_past, pos_data):
         [ecephys_data_past[i] for i in test])
     pos_train, pos_test = np.asarray([pos_data[i] for i in train]), np.asarray([pos_data[i] for i in test])
 
+    # Plotting the data
+    c_axs = axs[int((fold_no - 1)/plt_lines), (fold_no - 1)%plt_lines]
+    c_axs.scatter(pos_train[:, 0] , pos_train[:, 1])
+    c_axs.scatter(pos_test[:, 0], pos_test[:, 1])
+    c_axs.set_title('Data for fold : ' + str(fold_no))
+    c_axs.legend(['train', 'test'], loc='upper right')
+
     # hidden layer, directly follows from input, 100 neurons, input vector of dim 64
     model.add(keras.layers.Flatten(input_shape=ecephys_data_past[0].shape))
-    model.add(keras.layers.Dense(1, activation="tanh", kernel_regularizer=regularizers.l1(0.0000001), use_bias=True))
-    # model.add(keras.layers.Dense(50, activation="tanh"))
+    model.add(keras.layers.Dense(25, activation="tanh", kernel_regularizer=regularizers.l1(1.0e-6), use_bias=True)) # I changed the regularizer from 1.0e-7
+    model.add(keras.layers.Dense(10, activation="tanh", kernel_regularizer=regularizers.l1(1.0e-6), use_bias=True))
     # output layer, vector of dim 2, position
     model.add(keras.layers.Dense(2))
 
@@ -73,7 +85,7 @@ for train, test in kfold.split(ecephys_data_past, pos_data):
     loss = model.fit(ecephys_train, pos_train, epochs=EPOCHS, batch_size=BATCHSIZE,
                      validation_data=(ecephys_test, pos_test))
     K.set_value(model.optimizer.learning_rate, .1)
-    hist.append(model.fit(ecephys_train, pos_train, epochs=EPOCHS, batch_size=BATCHSIZE,
+    hist.append(model.fit(ecephys_train, pos_train, epochs=EPOCHS + 1, batch_size=BATCHSIZE,
                           validation_data=(ecephys_test, pos_test)))
 
     print("Testing data: ")
@@ -98,7 +110,7 @@ for train, test in kfold.split(ecephys_data_past, pos_data):
 
     model_linear = LinearRegression()
     model_linear.fit(ecephys_train, pos_train)
-    print("Training data: ")
+    print("Testing data: ")
     pred = model_linear.predict(ecephys_test)
     dist_linear = Largest_smallest_diff.eucledian_dist(pred, pos_test)
     linear_mean_dist = np.mean(dist_linear)
@@ -112,6 +124,8 @@ for train, test in kfold.split(ecephys_data_past, pos_data):
     fold_no += 1
 
 print("Done")
+
+plt.show()
 
 # from tutorial
 width = 0.3
