@@ -9,6 +9,8 @@ import sklearn
 import sklearn.datasets
 from keras import backend as K
 import Largest_smallest_diff
+from keras.utils.vis_utils import plot_model
+
 
 EPOCHS = 1
 BATCHSIZE = 25
@@ -69,8 +71,10 @@ for train, test in kfold.split(ecephys_data_past, pos_data):
 
     # hidden layer, directly follows from input, 100 neurons, input vector of dim 64
     model.add(keras.layers.Flatten(input_shape=ecephys_data_past[0].shape))
-    model.add(keras.layers.Dense(25, activation="tanh", kernel_regularizer=regularizers.l1(1.0e-6), use_bias=True)) # I changed the regularizer from 1.0e-7
-    model.add(keras.layers.Dense(10, activation="tanh", kernel_regularizer=regularizers.l1(1.0e-6), use_bias=True))
+    model.add(keras.layers.Dense(25, activation="tanh", kernel_regularizer=regularizers.l1(5.0e-7), use_bias=True,
+    kernel_initializer="glorot_uniform"))  # I changed the regularizer from 1.0e-7
+    model.add(keras.layers.Dense(10, activation="tanh", kernel_regularizer=regularizers.l1(5.0e-7), use_bias=True,
+    kernel_initializer="glorot_uniform"))
     # output layer, vector of dim 2, position
     model.add(keras.layers.Dense(2))
 
@@ -80,7 +84,7 @@ for train, test in kfold.split(ecephys_data_past, pos_data):
     print(f'Training for fold {fold_no} ...')
     print("Data split: Training - " + str(ecephys_train.shape) + " Testing - " + str(ecephys_test.shape))
     print("                       " + str(pos_train.shape) + "          " + str(pos_test.shape))
-    model.compile(optimizer="SGD", loss=euclidean_distance_loss)
+    model.compile(optimizer="adam", loss=euclidean_distance_loss)
     K.set_value(model.optimizer.learning_rate, 1.0)
     loss = model.fit(ecephys_train, pos_train, epochs=EPOCHS, batch_size=BATCHSIZE,
                      validation_data=(ecephys_test, pos_test))

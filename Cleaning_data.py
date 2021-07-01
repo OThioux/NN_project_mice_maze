@@ -2,6 +2,8 @@ import sys
 
 import numpy as np
 
+# NAIVE ATTEMPT AT REDUCING THE DATA SIZE, THIS IS NOT USED IN THE FINAL PROJECT.
+
 np.set_printoptions(threshold=sys.maxsize)
 # np.warnings.simplefilter("ignore", category=RuntimeWarning)
 
