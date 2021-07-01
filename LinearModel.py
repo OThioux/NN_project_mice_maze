@@ -5,7 +5,7 @@ from sklearn.linear_model import LinearRegression
 def eucledian_dist(pos1, pos2):
     return np.sqrt(np.sum(np.square(pos1 - pos2), axis=-1))
 
-
+# THIS IS NOT USED IN THE FINAL REPORT.
 training_ratio = 0.1
 training_data = int(60 * 32 * 19.5)
 

@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+# plots the data from the electrophysiology
+
 no_plots = 10
 no_points = 500
 

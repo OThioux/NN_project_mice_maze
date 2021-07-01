@@ -1,12 +1,11 @@
 from pynwb import NWBHDF5IO
 import numpy as np
-import pandas as pd
 import sys
 import inspect
 import os
 
-# pd.set_option('display.max_rows', None)
-# pd.set_option('display.max_columns', None)
+# Beautiful UI to navigate intuitively through the nwb files.
+
 stack = []
 
 

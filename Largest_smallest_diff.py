@@ -1,5 +1,7 @@
 import numpy as np
 
+
+# Gets the educated guess loss.
 def get_random_chance(points, training_data):
     points = np.asarray(points)
     mean_point = np.asarray(training_data).mean(axis=0)
@@ -10,6 +12,7 @@ def get_random_chance(points, training_data):
     return avg_distance
 
 
+# Loss function.
 def eucledian_dist(pos1, pos2):
     return np.sqrt(np.sum(np.square(pos1 - pos2), axis=-1))
 

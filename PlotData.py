@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+# plots the data. NOT USED IN FINAL PROJECT
+
 pos_dat = np.load("/Yuta23_data")
 y = pos_dat[1000:2000, 1]
 x = pos_dat[1000:2000, 0]

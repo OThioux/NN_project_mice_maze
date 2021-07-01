@@ -3,10 +3,10 @@ from keras import regularizers
 import tensorflow as tf
 import matplotlib.pyplot as plt
 import numpy as np
-import sklearn
-import sklearn.datasets
 from keras import backend as K
 import Largest_smallest_diff
+
+# OLD MODEL JUST FOR TESTING, THIS IS NOT USED IN THE FINAL PROJECT.
 
 EPOCHS = 5
 BATCHSIZE = 25

@@ -2,11 +2,12 @@ import sys
 
 import numpy as np
 
-
+# Definition of the euclidean_distance loss function
 def euclidean_dist(pos1, pos2):
     return np.sqrt(np.sum(np.square(pos1 - pos2), axis=-1))
 
 
+# Calculates the mean distance between all the points. We used this to get an idea of the spread of our data.
 def mean_dist(points):
     points = np.asarray(points)
     mean_point = points[:60*10*39].mean(axis=0)
@@ -16,7 +17,6 @@ def mean_dist(points):
 
 
 np.set_printoptions(threshold=sys.maxsize)
-# np.warnings.simplefilter("ignore", category=RuntimeWarning)
 
 SENSOR_DATA_NAME = "Yuta23_data/5/NN_projectYutamouse23_posdata_5_"
 ECEPHYS_DATA_NAME = "Yuta23_data/5/NN_projectYutaMouse23_ecephys_5"
@@ -64,20 +64,25 @@ for n in range(int(len(sensor0)/2)):
     # Because the electrophysiology data is effectively 1 time sample in the past we take the interval between
     # the sample n and n+1
     sample_time = (n + 1) * t_pos
+    # The starting point of the interval is one data-point in the past, because we want 65 data-points not 32-33
     interval_start = (n - 1) * t_pos
     # Calculate the starting and ending samples.
     start_sample = int(interval_start / t_ece)
     end_sample = int(sample_time / t_ece)
-    # Calculate the interval mean over axis 1, which means per electrode we take the average over the interval.
+    # Get the interval from the electrophysiology data.
     interval = np.asarray(ecephys[start_sample:end_sample])
     if n % 10000 == 0:
         print("Dealing with sample " + str(int(n / 1000)) + "," + "000" + " of " + str(sample_size))
+
+    # If we do not find any missing values we continue appending to this list of uninterrupted data.
     if not np.isnan(interval).any() and not np.isnan(sensor0[n]).any() and not np.isnan(sensor1[n]).any() \
             and len(interval) >= 32:
+        # Calculate the interval fft, only taking the first 12 bins.
         interval_fft = np.real(np.fft.fft(interval, n=12, axis=0))
         ecephys_clean[idx].append(interval_fft)
         pos_clean[idx].append(np.nanmean([sensor0[n], sensor1[n]], axis=0))
         last_n = n
+    # If we find more than 5 missing values then we start a new list of uninterrupted data.
     elif not pos_clean[idx] == [] and n - last_n > 5:
         ecephys_clean.append([])
         pos_clean.append([])
@@ -87,7 +92,7 @@ sensor0 = None
 sensor1 = None
 ecephys = None
 
-# Remove excess nan results
+# Remove excess nan results at the end, this shouldn't be necessary but we will keep it here to be sure.
 i = 1
 while np.isnan(ecephys_clean[-i]).any():
     i += 1
@@ -95,6 +100,7 @@ while np.isnan(ecephys_clean[-i]).any():
 ecephys_clean = np.asarray(ecephys_clean[:-i], dtype=object)
 pos_clean = pos_clean[:-i]
 
+# Take the largest uninterrupted data
 largest = 0
 largest_idx = 0
 for i in range(len(ecephys_clean)):
